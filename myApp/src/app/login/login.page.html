@@ -9,16 +9,16 @@
     <div class="form-container">
       <h1>Evaluaciones docentes</h1>
       <h2>LOGIN</h2>
-      <form (submit)="onLogin()">
+      <form (ngSubmit)="onLogin()">
         <ion-item>
-          <ion-label position="floating">Usuario</ion-label>
+          <ion-label position="floating">Username</ion-label>
           <ion-input type="text" [(ngModel)]="username" name="username"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Contraseña</ion-label>
+          <ion-label position="floating">Password</ion-label>
           <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
         </ion-item>
-        <ion-button expand="block" type="submit">Ingresar</ion-button>
+        <ion-button expand="block" type="submit">Login</ion-button>
       </form>
     </div>
   </div>

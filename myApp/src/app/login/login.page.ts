@@ -20,5 +20,6 @@ export class LoginPage {
         alert('Login failed');
       }
     });
+    this.router.navigate(['/main']);
   }
 }
