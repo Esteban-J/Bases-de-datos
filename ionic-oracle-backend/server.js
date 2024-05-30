@@ -65,6 +65,32 @@ app.post('/login', async (req, res) => {
   }
 });
 
+
+// Endpoint para obtener todos los maestros
+app.get('/maestros', async (req, res) => {
+  let connection;
+
+  try {
+    connection = await oracledb.getConnection(dbConfig);
+    const result = await connection.execute('SELECT * FROM maestros');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error al obtener los maestros');
+  } finally {
+    if (connection) {
+      try {
+        await connection.close();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  }
+});
+
+// Agrega más endpoints para otras operaciones CRUD
+
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
