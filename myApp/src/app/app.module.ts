@@ -5,7 +5,8 @@ import { HttpClientModule } from '@angular/common/http';     // Importing HttpCl
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';  // Importing IonicModule and Ionic routing strategy
 import { AppComponent } from './app.component';              // Importing the root component
-import { AppRoutingModule } from './app-routing.module';     // Importing the app routing module
+import { AppRoutingModule } from './app-routing.module'; 
+import { TeacherService } from './services/teacher.service';    // Importing the app routing module
 
 @NgModule({
   declarations: [AppComponent],          // Declaring the root component
@@ -17,7 +18,7 @@ import { AppRoutingModule } from './app-routing.module';     // Importing the ap
     HttpClientModule                     // Including HttpClientModule to make HTTP requests
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }  // Providing the Ionic routing strategy
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, TeacherService   // Providing the Ionic routing strategy
   ],
   bootstrap: [AppComponent],             // Bootstrapping the root component
 })

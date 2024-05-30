@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Docentes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let teacher of teachers">
+      <ion-label>
+        <h2>{{ teacher.name }} {{ teacher.lastName }}</h2> 
+        <p>ID: {{ teacher.id }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

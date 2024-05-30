@@ -1,33 +1,66 @@
-import { Component, OnInit } from '@angular/core';        // Importing Component and OnInit from Angular core
-import { DataService } from '../services/data.service';   // Importing the DataService
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { EvaluationService } from '../services/evaluation.service';
+
 @Component({
-  selector: 'app-home',                                   // Defining the component selector
-  templateUrl: 'home.page.html',                          // Defining the HTML template
-  styleUrls: ['home.page.scss'],                          // Defining the styles
+  selector: 'app-home',
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss'],
 })
-// export class HomePage implements OnInit {
-//   data: any[] = [];                                       // Defining a property to hold the fetched data
-export class HomePage {
-  //constructor(private dataService: DataService) {}        // Injecting DataService into the component
-  //constructor(private http: HttpClient) {}  
-  //ngOnInit() {
-    //Fetching data when the component is initialized
-    //this.dataService.getData().subscribe((data) => {
-     //this.data = data;                                   // Assigning the fetched data to the property
-    //});
-    // this.http.get('http://localhost:3000/data')
-    // .subscribe(res => {
-    //   console.log(res)
-    // })
-     
-  //}
+export class HomePage implements OnInit {
+  evaluations: any[] = [];
+  newEvaluation: any = {};
 
-  constructor(private authService: AuthService) { }
+  constructor(private evaluationService: EvaluationService) { }
 
-  onLogout() {
-    this.authService.logout();
+  ngOnInit() {
+    this.loadEvaluations();
+  }
+
+  loadEvaluations() {
+    this.evaluationService.getEvaluations().subscribe(
+      (data) => {
+        this.evaluations = data;
+      },
+      (error) => {
+        console.error('Error fetching evaluations', error);
+      }
+    );
+  }
+
+  eliminarEvaluacion(evaluation: any) {
+    this.evaluationService.deleteEvaluation(evaluation.id).subscribe(
+      () => {
+        const index = this.evaluations.indexOf(evaluation);
+        if (index !== -1) {
+          this.evaluations.splice(index, 1);
+        }
+      },
+      (error) => {
+        console.error('Error deleting evaluation', error);
+      }
+    );
+  }
+
+  actualizarEvaluacion(evaluation: any) {
+    this.evaluationService.updateEvaluation(evaluation).subscribe(
+      () => {
+        console.log('Evaluation updated successfully');
+      },
+      (error) => {
+        console.error('Error updating evaluation', error);
+      }
+    );
+  }
+
+  crearEvaluacion() {
+    this.evaluationService.createEvaluation(this.newEvaluation).subscribe(
+      (data) => {
+        this.evaluations.push(data);
+        this.newEvaluation = {};  // Reset the new evaluation object
+      },
+      (error) => {
+        console.error('Error creating evaluation', error);
+      }
+    );
   }
 }
-

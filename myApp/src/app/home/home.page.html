@@ -1,43 +1,65 @@
- <!--<ion-header>
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Data from Oracle                                   Header title -->
-     <!--</ion-title>
+    <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    Iterating over the data array and displaying each item 
-    <ion-item *ngFor="let item of data">
-      {{ item | json }}                                   Displaying the item as JSON 
+    <ion-item *ngFor="let evaluation of evaluations">
+      <ion-label>
+        <h2>Evaluación {{ evaluation[1] }}</h2>
+        <p>¿El profesor está bien preparado y organizado para cada clase?</p>
+        <ion-input value="{{ evaluation[2] }}"></ion-input>
+        <p>¿El profesor proporciona un plan de curso claro y estructurado?</p>
+        <ion-input value="{{ evaluation[3] }}"></ion-input>
+        <p>¿El profesor explica los conceptos de manera clara y comprensible?</p>
+        <ion-input value="{{ evaluation[4] }}"></ion-input>
+        <p>¿El profesor fomenta la participación y facilita la discusión en clase?</p>
+        <ion-input value="{{ evaluation[5] }}"></ion-input>
+        <p>¿El profesor demuestra un conocimiento profundo del material del curso?</p>
+        <ion-input value="{{ evaluation[6] }}"></ion-input>
+        <p>¿El profesor es capaz de responder a las preguntas de los estudiantes de manera eficaz?</p>
+        <ion-input value="{{ evaluation[7] }}"></ion-input>
+        <p>¿El profesor es accesible y está disponible para consultas fuera del horario de clase?</p>
+        <ion-input value="{{ evaluation[8] }}"></ion-input>
+        <p>¿El profesor muestra interés por el aprendizaje y el éxito de los estudiantes?</p>
+        <ion-input value="{{ evaluation[9] }}"></ion-input>
+        <p>¿El profesor proporciona retroalimentación constructiva y oportuna sobre las evaluaciones y tareas?</p>
+        <ion-input value="{{ evaluation[10] }}"></ion-input>
+        <p>¿El profesor proporciona retroalimentación constructiva y oportuna sobre las evaluaciones y tareas?</p>
+        <ion-input value="{{ evaluation[11] }}"></ion-input>
+        <ion-button color="danger" (click)="eliminarEvaluacion(evaluation)">Eliminar</ion-button>
+        <ion-button color="warning" (click)="actualizarEvaluacion(evaluation)">Actualizar</ion-button>
+      </ion-label>
     </ion-item>
   </ion-list>
-</ion-content>-->
 
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Home</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="onLogout()">Logout</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+  <ion-item>
+    <ion-label>
+      <h2>Crear Nueva Evaluación</h2>
+      <p>¿El profesor está bien preparado y organizado para cada clase?</p>
+      <ion-input [(ngModel)]="newEvaluation.question1"></ion-input>
+      <p>¿El profesor proporciona un plan de curso claro y estructurado?</p>
+      <ion-input [(ngModel)]="newEvaluation.question2"></ion-input>
+      <p>¿El profesor explica los conceptos de manera clara y comprensible?</p>
+      <ion-input [(ngModel)]="newEvaluation.question3"></ion-input>
+      <p>¿El profesor fomenta la participación y facilita la discusión en clase?</p>
+      <ion-input [(ngModel)]="newEvaluation.question4"></ion-input>
+      <p>¿El profesor demuestra un conocimiento profundo del material del curso?</p>
+      <ion-input [(ngModel)]="newEvaluation.question5"></ion-input>
+      <p>¿El profesor es capaz de responder a las preguntas de los estudiantes de manera eficaz?</p>
+      <ion-input [(ngModel)]="newEvaluation.question6"></ion-input>
+      <p>¿El profesor es accesible y está disponible para consultas fuera del horario de clase?</p>
+      <ion-input [(ngModel)]="newEvaluation.question7"></ion-input>
+      <p>¿El profesor muestra interés por el aprendizaje y el éxito de los estudiantes?</p>
+      <ion-input [(ngModel)]="newEvaluation.question8"></ion-input>
+      <p>¿El profesor proporciona retroalimentación constructiva y oportuna sobre las evaluaciones y tareas?</p>
+      <ion-input [(ngModel)]="newEvaluation.question9"></ion-input>
+      <p>¿El profesor proporciona retroalimentación constructiva y oportuna sobre las evaluaciones y tareas?</p>
+      <ion-input [(ngModel)]="newEvaluation.question10"></ion-input>
 
-<ion-content>
-  <div class="home-container">
-    <h1>Welcome to the Home Page</h1>
-    <p>This is the main content area.</p>
-  </div>
+      <ion-button color="success" (click)="crearEvaluacion()">Crear</ion-button>
+    </ion-label>
+  </ion-item>
 </ion-content>
-
-<style>
-  .home-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    text-align: center;
-  }
-</style>
